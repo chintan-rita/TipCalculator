@@ -12,6 +12,7 @@
 		8978797D1BA08515008326E9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8978797B1BA08515008326E9 /* Main.storyboard */; };
 		8978797F1BA08515008326E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8978797E1BA08515008326E9 /* Assets.xcassets */; };
 		897879821BA08515008326E9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 897879801BA08515008326E9 /* LaunchScreen.storyboard */; };
+		8980C3821BA0D0E60062C920 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8980C3811BA0D0E60062C920 /* SettingsViewController.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		8978797E1BA08515008326E9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		897879811BA08515008326E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		897879831BA08515008326E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8980C3811BA0D0E60062C920 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +56,23 @@
 		897879761BA08515008326E9 /* TipCalculator */ = {
 			isa = PBXGroup;
 			children = (
+				8980C37E1BA0CFCF0062C920 /* ViewControllers */,
 				897879771BA08515008326E9 /* AppDelegate.swift */,
-				897879791BA08515008326E9 /* ViewController.swift */,
 				8978797B1BA08515008326E9 /* Main.storyboard */,
 				8978797E1BA08515008326E9 /* Assets.xcassets */,
 				897879801BA08515008326E9 /* LaunchScreen.storyboard */,
 				897879831BA08515008326E9 /* Info.plist */,
 			);
 			path = TipCalculator;
+			sourceTree = "<group>";
+		};
+		8980C37E1BA0CFCF0062C920 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				897879791BA08515008326E9 /* ViewController.swift */,
+				8980C3811BA0D0E60062C920 /* SettingsViewController.swift */,
+			);
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,6 +148,7 @@
 			files = (
 				8978797A1BA08515008326E9 /* ViewController.swift in Sources */,
 				897879781BA08515008326E9 /* AppDelegate.swift in Sources */,
+				8980C3821BA0D0E60062C920 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,6 +306,7 @@
 				897879881BA08515008326E9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

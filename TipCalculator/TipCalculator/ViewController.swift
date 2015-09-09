@@ -14,12 +14,22 @@ class ViewController: UIViewController {
     @IBOutlet weak var tipLabel: UILabel!
     @IBOutlet weak var totalLabel: UILabel!
     @IBOutlet weak var tipControl: UISegmentedControl!
-    
+    let tipPercentages = [0.18, 0.2, 0.22]
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         tipLabel.text = "$0.00"
         totalLabel.text = "$0.00"
+        
+        updateSettingsTipValue()
+    }
+    
+    func updateSettingsTipValue() {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let intValue = defaults.integerForKey("defaultTipIndex")
+        
+        tipControl.selectedSegmentIndex = intValue
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,7 +39,6 @@ class ViewController: UIViewController {
 
 
     @IBAction func onEditingChanged(sender: AnyObject) {
-        let tipPercentages = [0.18, 0.2, 0.22]
         let selectedTipPercentage = tipPercentages[tipControl.selectedSegmentIndex]
         
         let billAmount: Double = NSString(string: billField.text!).doubleValue
@@ -41,6 +50,25 @@ class ViewController: UIViewController {
 
     @IBAction func onTap(sender: AnyObject) {
         view.endEditing(true)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        updateSettingsTipValue()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        print("view will disappear")
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        print("view did disappear")
     }
 }
 
