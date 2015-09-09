@@ -32,15 +32,10 @@ class ViewController: UIViewController {
         view.backgroundColor = colors[intValue]
         billField.backgroundColor = colors[intValue]
         tipControl.selectedSegmentIndex = intValue
+        calculateTotalAmount()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-
-    @IBAction func onEditingChanged(sender: AnyObject) {
+    
+    func calculateTotalAmount() {
         let selectedTipPercentage = tipPercentages[tipControl.selectedSegmentIndex]
         view.backgroundColor = colors[tipControl.selectedSegmentIndex]
         billField.backgroundColor = colors[tipControl.selectedSegmentIndex]
@@ -50,6 +45,15 @@ class ViewController: UIViewController {
         let totalAmount = billAmount + tip
         tipLabel.text = String(format: "$%.2f", tip)
         totalLabel.text = String(format: "$%.2f", totalAmount)
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+
+    @IBAction func onEditingChanged(sender: AnyObject) {
+        calculateTotalAmount()
     }
 
     @IBAction func onTap(sender: AnyObject) {
