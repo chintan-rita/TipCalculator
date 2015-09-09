@@ -15,20 +15,22 @@ class ViewController: UIViewController {
     @IBOutlet weak var totalLabel: UILabel!
     @IBOutlet weak var tipControl: UISegmentedControl!
     let tipPercentages = [0.18, 0.2, 0.22]
+    let colors = [UIColor(red: 0.85, green: 0.92, blue: 0.83, alpha: 1), UIColor(red: 1.0, green: 0.95, blue: 0.80, alpha: 1), UIColor(red: 0.96, green: 0.80, blue: 0.80, alpha: 1.0)]
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         tipLabel.text = "$0.00"
         totalLabel.text = "$0.00"
-        
+
         updateSettingsTipValue()
     }
     
     func updateSettingsTipValue() {
         let defaults = NSUserDefaults.standardUserDefaults()
         let intValue = defaults.integerForKey("defaultTipIndex")
-        
+        view.backgroundColor = colors[intValue]
+        billField.backgroundColor = colors[intValue]
         tipControl.selectedSegmentIndex = intValue
     }
 
@@ -40,6 +42,8 @@ class ViewController: UIViewController {
 
     @IBAction func onEditingChanged(sender: AnyObject) {
         let selectedTipPercentage = tipPercentages[tipControl.selectedSegmentIndex]
+        view.backgroundColor = colors[tipControl.selectedSegmentIndex]
+        billField.backgroundColor = colors[tipControl.selectedSegmentIndex]
         
         let billAmount: Double = NSString(string: billField.text!).doubleValue
         let tip = billAmount * selectedTipPercentage
