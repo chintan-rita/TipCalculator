@@ -16,19 +16,57 @@ class ViewController: UIViewController {
     @IBOutlet weak var tipControl: UISegmentedControl!
     let tipPercentages = [0.18, 0.2, 0.22]
     let colors = [UIColor(red: 0.85, green: 0.92, blue: 0.83, alpha: 1), UIColor(red: 1.0, green: 0.95, blue: 0.80, alpha: 1), UIColor(red: 0.96, green: 0.80, blue: 0.80, alpha: 1.0)]
+    
+    let defaults = NSUserDefaults.standardUserDefaults()
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        billField.becomeFirstResponder()
         tipLabel.text = "$0.00"
         totalLabel.text = "$0.00"
-        billField.becomeFirstResponder()
         updateSettingsTipValue()
+        
+        let notificationCenter = NSNotificationCenter.defaultCenter()
+
+        // Add observer:
+        notificationCenter.addObserver(self,
+            selector: Selector("applicationWillTerminateNotification"),
+            name:UIApplicationWillTerminateNotification,
+            object:nil)
+        
+        notificationCenter.addObserver(self, selector: "applicationDidBecomeActive", name: UIApplicationDidBecomeActiveNotification, object: nil)
+    }
+    
+    func applicationWillTerminateNotification() {
+        let date = NSDate().timeIntervalSince1970
+        defaults.setDouble(date, forKey: "tipcalculator_closingtime")
+        defaults.setObject(billField.text, forKey: "tipcalculator_billamount")
+        defaults.setInteger(tipControl.selectedSegmentIndex, forKey: "tipcalculator_tipselectedindex")
+        defaults.synchronize()
+    }
+    
+    func applicationDidBecomeActive() {
+        let lastClosingTime = defaults.doubleForKey("tipcalculator_closingtime")
+    
+        let currentTime = NSDate().timeIntervalSince1970
+        let difference = currentTime - lastClosingTime
+        if difference <= 6000 {
+            let billAmount = defaults.valueForKey("tipcalculator_billamount")
+            let tipSelectedIndex = defaults.integerForKey("tipcalculator_tipselectedindex")
+            if let b = billAmount as? String {
+                billField.text = b
+                tipControl.selectedSegmentIndex = tipSelectedIndex
+                calculateTotalAmount()
+            }
+
+        }
     }
     
     func updateSettingsTipValue() {
         let defaults = NSUserDefaults.standardUserDefaults()
-        let intValue = defaults.integerForKey("defaultTipIndex")
+        let intValue = defaults.integerForKey("tipcalculator_default_tip_index")
         view.backgroundColor = colors[intValue]
         billField.backgroundColor = colors[intValue]
         tipControl.selectedSegmentIndex = intValue
@@ -63,6 +101,7 @@ class ViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         updateSettingsTipValue()
+        billField.becomeFirstResponder()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -71,12 +110,10 @@ class ViewController: UIViewController {
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        print("view will disappear")
     }
     
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
-        print("view did disappear")
     }
 }
 

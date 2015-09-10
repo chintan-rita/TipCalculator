@@ -19,7 +19,7 @@ class SettingsViewController: UIViewController {
     
     func updateSelectedTipValue() {
         let defaults = NSUserDefaults.standardUserDefaults()
-        let intValue = defaults.integerForKey("defaultTipIndex")
+        let intValue = defaults.integerForKey("tipcalculator_default_tip_index")
         
         defaultTipPercentagesField.selectedSegmentIndex = intValue
     }
@@ -33,7 +33,7 @@ class SettingsViewController: UIViewController {
         let selectedTipIndex = defaultTipPercentagesField.selectedSegmentIndex
         
         let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.setInteger(selectedTipIndex, forKey: "defaultTipIndex")
+        defaults.setInteger(selectedTipIndex, forKey: "tipcalculator_default_tip_index")
         defaults.synchronize()
     }
     
