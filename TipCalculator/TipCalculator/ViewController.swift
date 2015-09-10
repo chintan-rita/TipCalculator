@@ -52,7 +52,7 @@ class ViewController: UIViewController {
     
         let currentTime = NSDate().timeIntervalSince1970
         let difference = currentTime - lastClosingTime
-        if difference <= 6000 {
+        if difference <= 600 {
             let billAmount = defaults.valueForKey("tipcalculator_billamount")
             let tipSelectedIndex = defaults.integerForKey("tipcalculator_tipselectedindex")
             if let b = billAmount as? String {
