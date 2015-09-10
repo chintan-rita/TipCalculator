@@ -64,10 +64,10 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Bill Amount" textAlignment="right" minimumFontSize="20" clearButtonMode="whileEditing" id="JiG-ex-i91">
-                                <rect key="frame" x="18" y="112" width="285" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" placeholder="Bill Amount" textAlignment="right" minimumFontSize="35" clearButtonMode="whileEditing" id="JiG-ex-i91">
+                                <rect key="frame" x="18" y="85" width="285" height="56"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="30"/>
                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                 <connections>
                                     <action selector="onEditingChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="ou9-aA-JEP"/>
@@ -145,7 +145,6 @@
         <!--Navigation Controller-->
         <scene sceneID="Vb7-5B-5al">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="I3o-L9-Qua" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="sHT-8g-YWU" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="b3S-5N-xD1">
@@ -157,6 +156,7 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="bh5-Hj-Pov"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="I3o-L9-Qua" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="162" y="344"/>
         </scene>
