@@ -10,6 +10,9 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var horizontalRule: UIView!
+    @IBOutlet weak var tipTextLabel: UILabel!
+    @IBOutlet weak var totalTextLabel: UILabel!
     @IBOutlet weak var billField: UITextField!
     @IBOutlet weak var tipLabel: UILabel!
     @IBOutlet weak var totalLabel: UILabel!
@@ -26,6 +29,11 @@ class ViewController: UIViewController {
         billField.becomeFirstResponder()
         tipLabel.text = "$0.00"
         totalLabel.text = "$0.00"
+        tipTextLabel.alpha = 0
+        tipLabel.alpha = 0
+        totalLabel.alpha = 0
+        totalTextLabel.alpha = 0
+        horizontalRule.alpha = 0
         updateSettingsTipValue()
         
         let notificationCenter = NSNotificationCenter.defaultCenter()
@@ -75,14 +83,35 @@ class ViewController: UIViewController {
     
     func calculateTotalAmount() {
         let selectedTipPercentage = tipPercentages[tipControl.selectedSegmentIndex]
-        view.backgroundColor = colors[tipControl.selectedSegmentIndex]
-        billField.backgroundColor = colors[tipControl.selectedSegmentIndex]
         
         let billAmount: Double = NSString(string: billField.text!).doubleValue
         let tip = billAmount * selectedTipPercentage
         let totalAmount = billAmount + tip
         tipLabel.text = String(format: "$%.2f", tip)
         totalLabel.text = String(format: "$%.2f", totalAmount)
+        let color = colors[tipControl.selectedSegmentIndex]
+        if billAmount > 0 {
+            UIView.animateWithDuration(1, animations: { () -> Void in
+                self.tipTextLabel.alpha = 1
+                self.tipLabel.alpha = 1
+                self.totalTextLabel.alpha = 1
+                self.totalLabel.alpha = 1
+                self.horizontalRule.alpha = 1
+                self.view.backgroundColor = color
+                self.billField.backgroundColor = color
+            })
+        }
+        else {
+            UIView.animateWithDuration(1, animations: { () -> Void in
+                self.tipLabel.alpha = 0
+                self.tipTextLabel.alpha = 0
+                self.totalTextLabel.alpha = 0
+                self.totalLabel.alpha = 0
+                self.horizontalRule.alpha = 0
+                self.view.backgroundColor = color
+                self.billField.backgroundColor = color
+            })
+        }
     }
     
     override func didReceiveMemoryWarning() {

@@ -89,9 +89,12 @@
                     </navigationItem>
                     <connections>
                         <outlet property="billField" destination="JiG-ex-i91" id="5l0-BN-iDd"/>
+                        <outlet property="horizontalRule" destination="N74-me-yiW" id="Ahh-Fy-PUQ"/>
                         <outlet property="tipControl" destination="Es6-Kf-jL0" id="M3O-hM-7xi"/>
                         <outlet property="tipLabel" destination="cto-uX-lbC" id="qHC-8U-eah"/>
+                        <outlet property="tipTextLabel" destination="5g3-FC-HuD" id="AVq-Fu-bzd"/>
                         <outlet property="totalLabel" destination="OCT-l5-8AR" id="ymO-We-CMm"/>
+                        <outlet property="totalTextLabel" destination="Xvo-fl-OXJ" id="NO6-lP-V5U"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
